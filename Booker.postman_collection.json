@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "aa7b029a-3970-498d-846e-25a0a36d42e6",
+		"name": "Booker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetBookings",
+			"item": [
+				{
+					"name": "get bookings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "90b7d575-6b97-45e5-909e-ba77b0147cfe",
+								"exec": [
+									"pm.test(\"Status is ok\", () => {",
+									"    pm.response.to.be.ok;",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/booking",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get booking 9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ce49abd-0d45-496e-b1c6-a4bd220fd2fa",
+								"exec": [
+									"pm.test(\"Status is ok\", () => {",
+									"    pm.response.to.be.ok;",
+									"})",
+									"",
+									"pm.test(\"Name to be Susan Smith\", () => {",
+									"    var responseJson = pm.response.json();",
+									"    pm.expect(responseJson.firstname).to.eql(\"Susan\")",
+									"    pm.expect(responseJson.lastname).to.eql(\"Smith\")",
+									"    console.log(responseJson)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/booking/9",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"booking",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PostBookings",
+			"item": [
+				{
+					"name": "PostBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "657a842d-6625-4489-a0d5-46f16eba4a9f",
+								"exec": [
+									"pm.test(\"Status Code = 201\", () => {",
+									"    pm.response.code.to.eql(201);",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstname\":\"Tom\",\n\t\"lastname\":\"Sawyer\",\n\t\"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/booking",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostBooking Random",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "657a842d-6625-4489-a0d5-46f16eba4a9f",
+								"exec": [
+									"pm.test(\"Status Code = 201\", () => {",
+									"    pm.response.code.to.eql(201);",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"totalprice\": \"{{$randomInt}}\",\r\n    \"depositpaid\": false,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2018-05-28\",\r\n        \"checkout\": \"2019-09-02\"\r\n    },\r\n    \"additionalneeds\": \"{{$randomProduct}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/booking",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostBooking Random Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "657a842d-6625-4489-a0d5-46f16eba4a9f",
+								"exec": [
+									"pm.test(\"Status Code = 201\", () => {",
+									"    pm.response.code.to.eql(201);",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token=9aaf5d8782b25c9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"bookingid\": 23,\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"totalprice\": \"{{$randomInt}}\",\r\n    \"depositpaid\": false,\r\n    \"bookingdates\": {\r\n        \"checkin\": \"2018-05-28\",\r\n        \"checkout\": \"2019-09-02\"\r\n    },\r\n    \"additionalneeds\": \"{{$randomProduct}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/booking/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"booking",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DeleteBooking",
+			"item": [
+				{
+					"name": "DeleteBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "657a842d-6625-4489-a0d5-46f16eba4a9f",
+								"exec": [
+									"pm.test(\"Status Code = 201\", () => {",
+									"    pm.response.code.to.eql(201);",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token=7dbef88050a3b44",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstname\":\"Tom\",\n\t\"lastname\":\"Sawyer\",\n\t\"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/booking/11",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"booking",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/ping",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"password123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
